@@ -2,15 +2,29 @@
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { athenticate } from './pages/redux/Slice';
+ 
 
 const Login = () => {
+  const dispatch=useDispatch()
 const [name,setname]=useState("")
 const [pass,setpass]=useState("")
 const [arr,setarr]=useState("")
 const [nameerror,setnameerror]=useState("")
 const [passworderror,setpassworderror]=useState("")
+
+
 const navigate=useNavigate()
+
+
+
+const state=useSelector((data)=>data).sample
+console.log(state);
+
+
+
 
 console.log(name);
 console.log(pass);
@@ -25,12 +39,17 @@ const arr=JSON.parse(sessionStorage.getItem("createaccout"))
 console.log(arr);
 
 
-arr.map((item)=>{
+arr.find((item)=>{
   
   
 
 if(item.name===name && item.Password===pass){
-  navigate("/home")
+ 
+  sessionStorage.setItem("isLogged",JSON.stringify(true))
+  dispatch(athenticate())
+  // navigate("/")
+
+ 
 }else if(name==="" && pass===""){
   setnameerror("please enter your name")
   setpassworderror("please enter your password")
@@ -39,27 +58,8 @@ setnameerror("please enter your name")
 }else if(pass===""){
 setpassworderror("please enter your password")
 }else{
-  alert("nvaild")
+  alert("invaild")
 }
-
-
-// if(item.name!=name){
-//   alert("please check your name")
-// }else if(item.Password!=pass){
-//   alert("please check your password")
-// }else if(item.name===name && item.Password===pass){
-//   navigate("/home")
-// }
-
-// if(item.name===name){
-//   if(item.Password===pass){
-//     navigate("/home")
-//   }else{
-//     alert("please check your password")
-//   }
-// }else{
-//   alert("please check your name")
-// }
 
 
 })

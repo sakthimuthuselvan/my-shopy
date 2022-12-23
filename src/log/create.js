@@ -2,7 +2,9 @@
 import { Box, Button, Container, Grid, Stack, TextField, Typography } from '@mui/material';
 
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
+import { athenticate,age } from './pages/redux/Slice';
 
 const Create = () => {
 const [name,setname]=useState("")
@@ -15,11 +17,13 @@ const [passerror,setpasserror]=useState("")
 const [confirmerror,setconfirmerror]=useState("")
 
 const navigate=useNavigate()
+const dispatch=useDispatch()
 
 const [collect,setcollect]=useState([])
 console.log(Phone);
 
-
+const state=useSelector((data)=>data).sample
+console.log(state);
 
 const mydetail=(uname,uphone,lenphone,confirmpass)=>{
   const collect={
@@ -42,11 +46,11 @@ const mydetail=(uname,uphone,lenphone,confirmpass)=>{
   sessionStorage.setItem("createaccout",JSON.stringify(data))
   
   navigate("/")
-
+  // dispatch(createathenticate())
+  dispatch(age())
 
 }
-
-
+ 
 
 
 

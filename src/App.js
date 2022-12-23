@@ -1,42 +1,48 @@
 import  React from 'react';
 import {BrowserRouter,Routes,Route} from "react-router-dom"
-import { Provider } from 'react-redux';
-
+import { Provider, useSelector } from 'react-redux';
+// import { athenticate } from './log/pages/redux/Slice';
 import './App.css';
 import Create from './log/create';
 import Login from './log/login';
 import Home from './log/pages/Home';
 import Nav from './log/pages/Nav';
-import Store from "../src/log/pages/redux/Store"
+import {store} from "../src/log/pages/redux/Store"
+import Details from './log/pages/Details';
 
 
 function App() {
+
+    const state=useSelector((data)=>data.sample)
+    console.log(state);
   return (
 
-    <div>
-      {/* <Provider value={Store}> */}
+
+      // <Provider store={store}>
          <BrowserRouter>
-      <Routes>
-        <Route path={"/"} element={<Login/>}></Route>
-        <Route path={"create"} element={<Create/>}></Route>
-        <Route path={"home"} element={<Home/>}></Route>
-        <Route path={"nav"} element={<Nav/>}></Route>
-      </Routes>
-    </BrowserRouter>
+        {state.athenticate ?(
+          <Routes>
 
-
-      {/* </Provider> */}
+              <Route path={"/"} element={<Home/>}></Route>
+             <Route path={"nav"} element={<Nav/>}></Route>
+             <Route path={"details"} element={<Details/>}></Route>
+          </Routes>
+        ):( 
+          <Routes>
+            <Route path={"/"} element={<Login/>}></Route>
+             <Route path={"create"} element={<Create/>}></Route>
+          </Routes>
+         
+         
+        )} 
+        
+     
+     </BrowserRouter>
+      // </Provider>
    
  
-    </div>
-   
-
-      
 
 
-    
-
-    
   );
 }
 

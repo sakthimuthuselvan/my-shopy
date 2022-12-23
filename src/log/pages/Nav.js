@@ -16,6 +16,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Box, Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -92,6 +94,8 @@ const Nav = () => {
   
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+   
   
     const handleProfileMenuOpen = (event) => {
       setAnchorEl(event.currentTarget);
@@ -147,9 +151,9 @@ const Nav = () => {
         </MenuItem>
         <MenuItem>
           <IconButton aria-label="show 11 new notifications" color="inherit">
-            <Badge badgeContent={11} color="secondary">
+            {/* <Badge badgeContent={11} color="secondary">
               <NotificationsIcon />
-            </Badge>
+            </Badge> */}
           </IconButton>
           <p>Notifications</p>
         </MenuItem>
@@ -167,7 +171,7 @@ const Nav = () => {
       </Menu>
     );
   return (
-    <div>
+    <Box>
         <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
@@ -198,14 +202,14 @@ const Nav = () => {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              {/* <Badge badgeContent={4} color="secondary">
                 <MailIcon />
-              </Badge>
+              </Badge> */}
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              {/* <Badge badgeContent={17}  color="secondary">
                 <NotificationsIcon />
-              </Badge>
+              </Badge> */}
             </IconButton>
             <IconButton
               edge="end"
@@ -228,13 +232,14 @@ const Nav = () => {
             >
               <MoreIcon />
             </IconButton>
+       
           </div>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </div>
-    </div>
+    </Box>
   )
 }
 
